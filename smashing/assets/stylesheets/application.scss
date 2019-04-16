@@ -255,3 +255,7 @@ h3 {
 .clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
+
+.widget.widget-image.image {
+  background-color: #7d3f98;
+}
