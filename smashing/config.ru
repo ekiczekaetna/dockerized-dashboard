@@ -8,7 +8,7 @@ configure do
   set :template_languages, %i[html erb]
   set :show_exceptions, false
 
-  set :default_dashboard, 'sample'
+  set :default_dashboard, 'main'
 
   helpers do
     def protected!
