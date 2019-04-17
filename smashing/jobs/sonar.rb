@@ -70,7 +70,7 @@ SCHEDULER.every '10s', :first_in => 0 do |job|
         when "code_smells"
           sonar_stat["code_smells"] = { label: "Code Smells", value: sonar_metric_kv_pair["value"] }
         when "coverage"
-          sonar_stat["coverage"] = { label: "Coverage", value: '%.0f' % (sonar_metric_kv_pair["value"].to_f * 100.0) + "%"}
+          sonar_stat["coverage"] = { label: "Coverage", value: '%.0f' % (sonar_metric_kv_pair["value"].to_f) + "%"}
         end
       end
     end
