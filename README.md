@@ -33,7 +33,7 @@ ensuring the following is present (be sure to insert your token from previous st
 
 1. Run `gradle test jacocoTestReport`. This creates a test coverage report which will be fed to SonarQube in the next step.
 1. Run `gradle sonarqube`. It will analyze your code with the SonarQube Scanner for Gradle (https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner+for+Gradle) and send results to SonarQube.
-1. In SonarQube, confirm a new project has been created to analyze the Gradle project. Browse to the project and then to the Administration tab. Select Update Key and copy the key. Back in the dashboard code, edit `jobs/sonar.rb` and replace the value of `sq_project_key` with the prject key from SonarQube.
+1. In SonarQube, confirm a new project has been created to analyze the Gradle project. Browse to the project and then to the Administration tab. Select Update Key and copy the key. Back in the dashboard code, edit `jobs/sonar.rb` and replace the value of `sq_project_key` with the project key from SonarQube.
 1. Rebuild and re-run the dashboard container. The widget should now display more useful information about the Gradle project.
 
 # Reference
