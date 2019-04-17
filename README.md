@@ -1,5 +1,5 @@
 # dockerized-dashboard
-A dockerized dashboard for developing dashboard components locally.
+A dockerized dashboard (using the Smashing dashboard framework) for developing dashboard components locally.
 ![Sample Dashboard](./sampledashboard.png)
 
 # How to build and run a local dashboard
@@ -38,5 +38,6 @@ ensuring the following is present (be sure to insert your token from previous st
 1. Rebuild and re-run the dashboard container. The widget should now display more useful information about the Gradle project.
 
 # Reference
+* Smashing: https://smashing.github.io
 * SonarQube latest documentation: https://docs.sonarqube.org/latest/
 * JaCoCo basic tutorial: https://www.ratanparai.com/java/java-application-using-gradle-with-code-coverage/
