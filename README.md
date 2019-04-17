@@ -1,5 +1,6 @@
 # dockerized-dashboard
 A dockerized dashboard for developing dashboard components locally.
+![Sample Dashboard](./sampledashboard.png)
 
 # How to build and run a local dashboard
 1. Install docker locally.
