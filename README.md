@@ -34,4 +34,4 @@ ensuring the following is present (be sure to insert your token from previous st
 1. Rebuild and re-run the dashboard container. The widget should now display more useful information about the Gradle project.
 
 # Reference
-* SonarQube latest documentaion: https://docs.sonarqube.org/latest/
+* SonarQube latest documentation: https://docs.sonarqube.org/latest/
