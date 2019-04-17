@@ -8,9 +8,9 @@ A dockerized dashboard for developing dashboard components locally.
 
 # How to get the SonarQube widget working
 1. The widget queries a local SonarQube service running on port 9000. Therefore, run `docker run -d --name sonarqube -p 9000:9000 sonarqube` in order to stand up that service. SonarQube is now available in your web browser at http://localhost:9000. Login to the SonarQube using the default username/password combination of admin/admin.
-2. The dashboard still needs to know the network address for this SonarQube instance. Run `docker network inspect bridge`, find the container named sonarqube and note its IPv4Address.
-3. Edit jobs/sonar.rb and change the value for bridge_network_sq_ip to the IPv4Address value from the previous step.
-4. Rebuild and re-run the dashboard container. The widget should now display the "Health" value of "GREEN".
+1. The dashboard still needs to know the network address for this SonarQube instance. Run `docker network inspect bridge`, find the container named sonarqube and note its IPv4Address.
+1. Edit jobs/sonar.rb and change the value for bridge_network_sq_ip to the IPv4Address value from the previous step.
+1. Rebuild and re-run the dashboard container. The widget should now display the "Health" value of "GREEN".
 
 # How to get the SonarQube widget to actually display something useful for a Gradle project
 1. If you don't have Gradle installed locally, install it. Basic guidance is available at https://spring.io/guides/gs/gradle/#initial.
