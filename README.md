@@ -37,7 +37,13 @@ ensuring the following is present (be sure to insert your token from previous st
 1. In SonarQube, confirm a new project has been created to analyze the Gradle project. Browse to the project and then to the Administration tab. Select Update Key and copy the key. Back in the dashboard code, edit `jobs/sonar.rb` and replace the value of `sq_project_key` with the project key from SonarQube.
 1. Rebuild and re-run the dashboard container. The widget should now display more useful information about the Gradle project.
 
+# How to get the Rally widget working
+1. Copy `widgets/rally/rally.credentials.template` to `widgets/rally/rally.credentials` and change the username and password in that file to use valid Rally credentials.
+1. Edit jobs/rally.rb and replace the value of `rally_project_key` with the project key from Rally. The project key can be found in the URL for the project homepage, i.e. https://rally1.rallydev.com/#/THIS_IS_MY_PROJECT_KEY.
+1. Rebuild and re-run the dashboard container. The widget's background should eventually change to the default widget background, currently a solid (no flashing) light blue. This indicates a healthy connection to Rally. Unhealthy connections will change the background to use the style `status-warning` or `status-danger` as defined in the default CSS. These styles usually include "alarming" colors like red and yellow, and include a flashing behavior to grab the user's attention.
+
 # Reference
 * Smashing: https://smashing.github.io
 * SonarQube latest documentation: https://docs.sonarqube.org/latest/
 * JaCoCo basic tutorial: https://www.ratanparai.com/java/java-application-using-gradle-with-code-coverage/
+* Rally Web Services API: https://rally1.rallydev.com/slm/doc/webservice/
