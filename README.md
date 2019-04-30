@@ -1,5 +1,8 @@
 # dockerized-dashboard
-A dockerized dashboard (using the Smashing dashboard framework) for developing dashboard components locally.
+This repository contains code for a dockerized dashboard (using the Smashing dashboard framework) for developing dashboard components locally.
+
+Currently, the dashboard contains sample widgets to display information from SonarQube and Rally.
+
 ![Sample Dashboard](./sampledashboard.png)
 
 # How to build and run a local dashboard
@@ -8,15 +11,19 @@ A dockerized dashboard (using the Smashing dashboard framework) for developing d
 1. To start the dashboard, run `docker run -d -p 8080:3030 dashboard`. The dashboard is now available in your web browser via http://localhost:8080.
 
 # How to get the SonarQube widget working
-1. The widget queries a local SonarQube service running on port 9000. Therefore, run `docker run -d --name sonarqube -p 9000:9000 sonarqube` in order to stand up that service. SonarQube is now available in your web browser at http://localhost:9000. Login to the SonarQube using the default username/password combination of admin/admin.
+1. The widget queries a local SonarQube service running on port 9000. Therefore, run `docker run -d --name sonarqube -p 9000:9000 sonarqube` in order to stand up that service. SonarQube is now available in your web browser at http://localhost:9000. You may login to the SonarQube using the default username/password combination of admin/admin, but it is not required to connect the dashboard to SonarQube.
+
+   The widget's background should eventually change to the default widget background, currently a solid (no flashing) light blue. This indicates a healthy connection to SonarQube. Unhealthy connections will change the background to use the style `status-warning` or `status-danger` as defined in the default CSS. These styles usually include "alarming" colors like red and yellow, and include a flashing behavior to grab the user's attention.
+
+   If, after a few minutes, the widget's background does not change, continue to the next step.
 1. The dashboard still needs to know the network address for this SonarQube instance. Run `docker network inspect bridge`, find the container named sonarqube and note its IPv4Address.
-1. Edit jobs/sonar.rb and change the value for bridge_network_sq_ip to the IPv4Address value from the previous step.
-1. Rebuild and re-run the dashboard container. The widget's background should eventually change to the default widget background, currently a solid (no flashing) light blue. This indicates a healthy connection to SonarQube. Unhealthy connections will change the background to use the style `status-warning` or `status-danger` as defined in the default CSS. These styles usually include "alarming" colors like red and yellow, and include a flashing behavior to grab the user's attention.
+1. Edit `smashing/jobs/sonar.rb` and change the value for bridge_network_sq_ip to the IPv4Address value from the previous step.
+1. Rebuild and re-run the dashboard container. The Sonar widget should display with the default background.
 
 # How to get the SonarQube widget to actually display something useful for a Gradle project
 1. If you don't have Gradle installed locally, install it. Basic guidance is available at https://spring.io/guides/gs/gradle/#initial.
 1. If you don't have a Gradle project, grab one via `git clone https://github.com/spring-guides/gs-gradle.git` and then `cd gs-gradle/complete` directory within the repo. (h/t to https://spring.io/guides/gs/gradle/ for basic guidance).
-1. Login to SonarQube, go to My Account, then the Security tab. Generate a token and note the value for the next step.
+1. Login to SonarQube using the default username/password combination of admin/admin. Navigate to My Account, then the Security tab. Generate a token and note the value for the next step.
 1. Create/edit `~/.gradle/gradle.properties` with your favorite editor,
 ensuring the following is present (be sure to insert your token from previous step in place of ``<YOUR_TOKEN_HERE>``):
 
@@ -34,11 +41,11 @@ ensuring the following is present (be sure to insert your token from previous st
 
 1. Run `gradle test jacocoTestReport`. This creates a test coverage report which will be fed to SonarQube in the next step.
 1. Run `gradle sonarqube`. It will analyze your code with the SonarQube Scanner for Gradle (https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner+for+Gradle) and send results to SonarQube.
-1. In SonarQube, confirm a new project has been created to analyze the Gradle project. Browse to the project and then to the Administration tab. Select Update Key and copy the key. Back in the dashboard code, edit `jobs/sonar.rb` and replace the value of `sq_project_key` with the project key from SonarQube.
-1. Rebuild and re-run the dashboard container. The widget should now display more useful information about the Gradle project.
+1. In SonarQube, confirm a new project has been created to analyze the Gradle project. Browse to the project and then to the Administration tab. Select Update Key and copy the key. Back in the dashboard code, edit `smashing/jobs/sonar.rb` and replace the value of `sq_project_key` with the project key from SonarQube.
+1. Rebuild and re-run the dashboard container. The widget should now display useful information about the Gradle project.
 
 # How to get the Rally widget working
-1. Copy `widgets/rally/rally.credentials.template` to `widgets/rally/rally.credentials` and change the username and password in that file to use valid Rally credentials.
+1. Copy `smashing/widgets/rally/rally.credentials.template` to `smashing/widgets/rally/rally.credentials` and change the username and password in that file to use valid Rally credentials.
 1. Edit jobs/rally.rb and replace the value of `rally_project_key` with the project key from Rally. The project key can be found in the URL for the project homepage, i.e. https://rally1.rallydev.com/#/THIS_IS_MY_PROJECT_KEY.
 1. Rebuild and re-run the dashboard container. The widget's background should eventually change to the default widget background, currently a solid (no flashing) light blue. This indicates a healthy connection to Rally. Unhealthy connections will change the background to use the style `status-warning` or `status-danger` as defined in the default CSS. These styles usually include "alarming" colors like red and yellow, and include a flashing behavior to grab the user's attention.
 
