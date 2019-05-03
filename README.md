@@ -22,16 +22,11 @@ Currently, the dashboard contains sample widgets to display information from Son
 
 # How to get the SonarQube widget to actually display something useful for a Gradle project
 1. If you don't have Gradle installed locally, install it. Basic guidance is available at https://spring.io/guides/gs/gradle/#initial.
-1. If you don't have a Gradle project, grab one via `git clone https://github.com/spring-guides/gs-gradle.git` and then `cd gs-gradle/complete` directory within the repo. (h/t to https://spring.io/guides/gs/gradle/ for basic guidance).
-1. Login to SonarQube using the default username/password combination of admin/admin. Navigate to My Account, then the Security tab. Generate a token and note the value for the next step.
-1. Create/edit `~/.gradle/gradle.properties` with your favorite editor,
-ensuring the following is present (be sure to insert your token from previous step in place of ``<YOUR_TOKEN_HERE>``):
-
-        systemProp.sonar.host.url=http://localhost:9000
-
-        #----- Token generated from an account with 'publish analysis' permission
-        systemProp.sonar.login=<YOUR_TOKEN_HERE>
-1. In your project root, edit `build.gradle` to include the following at the top of the file:
+1. If you don't have a Gradle project already:
+  1. Fork a simple one at https://github.com/spring-guides/gs-gradle.git .
+  1. Clone it locally via something like `git clone https://github.com/spring-guides/gs-gradle.git`.
+  1. `cd gs-gradle/complete` directory within the repo to use the project located in that directory. (h/t to https://spring.io/guides/gs/gradle/ for basic guidance).
+1. In your project, edit `build.gradle` to include the following at the top of the file:
 
         plugins {
             id "org.sonarqube" version "2.7"
@@ -39,8 +34,7 @@ ensuring the following is present (be sure to insert your token from previous st
 
         apply plugin: 'jacoco'
 
-1. Run `gradle test jacocoTestReport`. This creates a test coverage report which will be fed to SonarQube in the next step.
-1. Run `gradle sonarqube`. It will analyze your code with the SonarQube Scanner for Gradle (https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner+for+Gradle) and send results to SonarQube.
+1. Run `gradle test jacocoTestReport sonarqube --no-daemon`. This creates a test coverage report and feeds it to SonarQube using the SonarQube Scanner for Gradle (https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner+for+Gradle).
 1. In SonarQube, confirm a new project has been created to analyze the Gradle project. Browse to the project and then to the Administration tab. Select Update Key and copy the key. Back in the dashboard code, edit `smashing/jobs/sonar.rb` and replace the value of `sq_project_key` with the project key from SonarQube.
 1. Rebuild and re-run the dashboard container. The widget should now display useful information about the Gradle project.
 
