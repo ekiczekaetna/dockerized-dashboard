@@ -122,6 +122,10 @@ This will create a 'jenkins_home' Docker volume on the host machine that will su
 
 1. Rebuild and re-run the dashboard container. The SonarQube widget should report healthy and display code quality stats. The Jenkins widget should report healthy and the background color should be green, assuming the Jenkins run above was successful. You can test Jenkins connectivity by going to Jenkins, re-running the build job, then quickly coming back to the dashboard. While the Jenkins job is running, the widget should have a grey background color, and the meter should indicate progress of the running build. Eventually, the widget background should turn green if successful, red if failed.
 
+# How to get the Sumo Logic widget working
+1. Copy `smashing/widgets/sumologic/sumologic.credentials.template` to `smashing/widgets/sumologic/sumologic.credentials` and change the API access ID and key in that file to use valid Sumo Logic API credentials.
+1. Rebuild and re-run the dashboard container. The widget's background should eventually change to the default widget background, currently a solid (no flashing) light blue. This indicates a healthy connection to Sumo Logic. Unhealthy connections will change the background to use the style `status-warning` or `status-danger` as defined in the default CSS. These styles usually include "alarming" colors like red and yellow, and include a flashing behavior to grab the user's attention.
+
 # Reference
 * Smashing: https://smashing.github.io
 * SonarQube latest documentation: https://docs.sonarqube.org/latest/
@@ -129,3 +133,4 @@ This will create a 'jenkins_home' Docker volume on the host machine that will su
 * Rally Web Services API: https://rally1.rallydev.com/slm/doc/webservice/
 * Jenkins Docker documentation: https://github.com/jenkinsci/docker/blob/master/README.md
 * Jenkins widget: https://gist.github.com/mavimo/6334816
+* Sumo Logic APIs: https://help.sumologic.com/APIs
