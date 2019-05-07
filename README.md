@@ -23,7 +23,7 @@ Currently, the dashboard contains sample widgets to display information from Son
 # How to get the SonarQube widget to actually display something useful for a Gradle project
 1. If you don't have Gradle installed locally, install it. Basic guidance is available at https://spring.io/guides/gs/gradle/#initial.
 1. If you don't have a Gradle project already:
-  1. Fork a simple one at https://github.com/spring-guides/gs-gradle.git .
+  1. Fork a simple one at https://github.com/spring-guides/gs-gradle.git.
   1. Clone it locally via something like `git clone https://github.com/spring-guides/gs-gradle.git`.
   1. `cd gs-gradle/complete` directory within the repo to use the project located in that directory. (h/t to https://spring.io/guides/gs/gradle/ for basic guidance).
 1. In your project, edit `build.gradle` to include the following at the top of the file:
