@@ -126,6 +126,10 @@ This will create a 'jenkins_home' Docker volume on the host machine that will su
 1. Copy `smashing/widgets/sumologic/sumologic.credentials.template` to `smashing/widgets/sumologic/sumologic.credentials` and change the API access ID and key in that file to use valid Sumo Logic API credentials.
 1. Rebuild and re-run the dashboard container. The widget's background should eventually change to the default widget background, currently a solid (no flashing) light blue. This indicates a healthy connection to Sumo Logic. Unhealthy connections will change the background to use the style `status-warning` or `status-danger` as defined in the default CSS. These styles usually include "alarming" colors like red and yellow, and include a flashing behavior to grab the user's attention.
 
+# How to get the New Relic widget working
+1. Copy `smashing/widgets/newrelic/newrelic.credentials.template` to `smashing/widgets/newrelic/newrelic.credentials` and change the REST API Key in that file to use a valid New Relic REST API key.
+1. Rebuild and re-run the dashboard container. The widget's background should eventually change to the default widget background, currently a solid (no flashing) light blue. This indicates a healthy connection to New Relic. Unhealthy connections will change the background to use the style `status-warning` or `status-danger` as defined in the default CSS. These styles usually include "alarming" colors like red and yellow, and include a flashing behavior to grab the user's attention.
+
 # Reference
 * Smashing: https://smashing.github.io
 * SonarQube latest documentation: https://docs.sonarqube.org/latest/
@@ -134,3 +138,4 @@ This will create a 'jenkins_home' Docker volume on the host machine that will su
 * Jenkins Docker documentation: https://github.com/jenkinsci/docker/blob/master/README.md
 * Jenkins widget: https://gist.github.com/mavimo/6334816
 * Sumo Logic APIs: https://help.sumologic.com/APIs
+* New Relic API Explorer: https://rpm.newrelic.com/api/explore/
