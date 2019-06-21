@@ -14,3 +14,5 @@ class Dashing.Rally extends Dashing.Widget
         c.replace /\bstatus-\S+/g, ''
       # add new class
       $(@get('node')).addClass "status-#{data.rallyHealth}"
+      $(@get('node')).attr 'class', (i,c) ->
+        c.replace /\brally-\S+/g, 'rally'
